@@ -1,0 +1,27 @@
+9/10	1:08	SUPPLY DEPOT (18)	25	1:33
+9/10	1:13	BARRACKS	50	2:03
+9/10	1:19	4x SCVs	13	1:22
+11/18	1:38	Supply Depot SCV to scout		
+13/18	2:04	Marine	15	2:19
+14/18	2:08	SUPPLY DEPOT (26)	25	2:33
+14/18	2:13	BARRACKS	50	3:03
+15/18	2:19	10x Marines	15	2:34
+16/18	2:20	Send out a marine to hunt overlord		
+18/26	2:40	REFINERY	25	3:05
+19/26	2:57	ACADEMY	50	3:47
+21/26	3:09	SCV	13	3:22
+23/26	3:22	SUPPLY DEPOT (34)	25	3:47
+25/26	3:47	STIM PACK	50	4:37
+25/26	3:50	2x Medics	19	4:09
+27/34	3:58	4 Marines move out		
+27/34	3:59	SCV	13	4:12
+28/34	4:00	Take an SCV off gas		
+28/34	4:09	2x Firebats	15	4:24
+28/34	4:10	6 Marines, 2 Medics move out		
+30/34	4:15	SUPPLY DEPOT (42)	25	4:40
+30/34	4:15	4x Marines	15	
+30/34	4:15	Rally barracks to enemy		
+32/42	4:42	Take an SCV off gas		
+34/42	5:01	10 Marines, 2 Medics, 2 Firebats		
+34/42	5:01	Stim and attack natural		
+31/42	5:10	BARRACKS	50	6:00
