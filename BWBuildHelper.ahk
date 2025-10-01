@@ -2,6 +2,7 @@
 #include OCR.ahk
 Persistent
 #MaxThreadsPerHotkey 2
+
 CoordMode "Mouse", "Screen"
 CODE:
 global ToggleThis := False
@@ -23,7 +24,7 @@ if  IsSet(MyGui) && MyGui {
 		
 global myGui := Gui()
 
-myGui.Opt("+LastFound +AlwaysOnTop -Caption +ToolWindow")
+myGui.Opt("-LastFound +AlwaysOnTop -Caption +ToolWindow")
 myGui.BackColor := "EEAA99"
 myGui.SetFont("s20")
 ogcTextFileInfo := myGui.Add("Text", "vFileInfo cred", oText[msgIndex])
@@ -31,6 +32,9 @@ ogcTextFileInfo := myGui.Add("Text", "vFileInfo cred", oText[msgIndex])
 
 WinSetTransColor("EEAA99 150")
 myGui.Show("x5" . " y5")
+if WinExist("Brood War")
+WinActivate	
+
 return
 } ; V1toV2: Added Bracket before hotkey or Hotstring
 
@@ -50,8 +54,11 @@ global msgIndex := msgIndex+1
 if msgIndex >= oText.Length{
 ExitApp
 }
-myGui.Destroy()
-myGui := Gui()
+if  IsSet(MyGui) && MyGui {
+        MyGui.Destroy()
+		MyGui := ""
+		}
+global myGui := Gui()
 
 myGui.Opt("+LastFound +AlwaysOnTop -Caption +ToolWindow")
 myGui.BackColor := "EEAA99"
@@ -59,7 +66,9 @@ myGui.SetFont("s20")
 ogcTextFileInfo := myGui.Add("Text", "vFileInfo cred", oText[msgIndex])
 WinSetTransColor("EEAA99 150")
 myGui.Show("x5" . " y5")
-return
+if WinExist("Brood War")
+    WinActivate
+;return
 
 } ; V1toV2: Added bracket in the end
 
@@ -82,7 +91,9 @@ myGui.SetFont("s20")
 ogcTextFileInfo := myGui.Add("Text", "vFileInfo cred", oText[msgIndex])
 WinSetTransColor("EEAA99 150")
 myGui.Show("x5" . " y5")
-return
+if WinExist("Brood War")
+    WinActivate
+;return
 
 }
 
@@ -91,7 +102,7 @@ f7::
 global oText
 global msgIndex
 found := False
-global time
+global time := StrSplit(oText[msgIndex],"`t")
 global ToggleThis := true
 while ToggleThis == true {
 if msgIndex >= oText.Length{
@@ -100,16 +111,14 @@ ExitApp
   sleep 200
 notFound := 0
 
-result := OCR.FromWindow("A", {scale:1, X:890, Y: 780, W: 300, H: 120})
+result := OCR.FromWindow("Brood War", {scale:2, X:1255, Y: 1070, W: 250, H: 100})
     try found := result.FindString(time[2])
-    ;try found := result.FindString("0:53")
 	catch {
 
-        ;MsgBox 'Phrase "' time[2] '" not found!'
-		;Exit
+        
 		notFound := 1
     }
-    ; MouseMove is set to CoordMode Window, so no coordinate conversion necessary
+    
     if notFound = 0{
 		msgIndex := msgIndex+1
 		time := StrSplit(oText[msgIndex],"`t")
@@ -126,8 +135,10 @@ result := OCR.FromWindow("A", {scale:1, X:890, Y: 780, W: 300, H: 120})
 		ogcTextFileInfo := myGui.Add("Text", "vFileInfo cred", oText[msgIndex])
 		WinSetTransColor("EEAA99 150")
 		myGui.Show("x5" . " y5")
-	
+
 		found.Highlight()
+		if WinExist("Brood War")
+		WinActivate	
 		;
 		}
 		
@@ -140,5 +151,15 @@ global ToggleThis := False
 }
 
 f9::{
-ExitApp
+ExitApp()
+Return
+
+GuiEscape(*)
+{ ; V1toV2: Added bracket
+global ; V1toV2: Made function global
+GuiClose:
+ExitApp()
+} ; V1toV2: Added bracket in the end
 }
+
+

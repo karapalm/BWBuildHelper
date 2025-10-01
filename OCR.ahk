@@ -695,7 +695,9 @@ class OCR {
             iw:= w+d, ih:= h+d, w:=w+d*2, h:=h+d*2, x:=x-d, y:=y-d
             WinSetRegion("0-0 " w "-0 " w "-" h " 0-" h " 0-0 " d "-" d " " iw "-" d " " iw "-" ih " " d "-" ih " " d "-" d, GuiObj.Hwnd)
             GuiObj.Show("NA x" . x . " y" . y . " w" . w . " h" . h)
-    
+			if WinExist("Brood War"){
+				WinActivate	
+				}
             if showTime > 0 {
                 Sleep(showTime)
                 this.Highlight()
