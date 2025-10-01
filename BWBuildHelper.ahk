@@ -8,10 +8,60 @@ CODE:
 global ToggleThis := False
 SetWorkingDir(A_ScriptDir)
 CoordMode("Mouse", "Screen")
-FileInfo := FileRead("buildOrder.txt")
+global selRace := 0
+f12::{
+global myGui
+global selRace
+versusRace := "zerg"
+if selRace = 0{
+FileInfo := FileRead("buildOrderZ.txt")
+versusRace := "zerg"
+}
+if selRace = 1{
+FileInfo := FileRead("buildOrderT.txt")
+versusRace := "terran"
+}
+if selRace = 2{
+FileInfo := FileRead("buildOrderP.txt")
+versusRace := "protoss"
+}
+
 global oText := StrSplit(FileInfo, "`n")
 global msgIndex := 1
 global time := StrSplit(oText[msgIndex],"`t")
+
+selRace := selRace+1
+if selRace > 2
+selRace := 0
+if  IsSet(myGui) && myGui{
+        MyGui.Destroy()
+		MyGui := ""
+		}
+if  IsSet(classGui) && classGui{
+        classGui.Destroy()
+		classGui := ""
+		}
+global myGui := Gui()
+
+myGui.Opt("+LastFound +AlwaysOnTop -Caption +ToolWindow")
+myGui.BackColor := "EEAA99"
+myGui.SetFont("s20")
+ogcTextFileInfo := myGui.Add("Text", "vFileInfo cred", oText[msgIndex])
+WinSetTransColor("EEAA99 150")
+myGui.Show("x5" . " y5")
+global classGui := Gui()
+classGui.Opt("+LastFound +AlwaysOnTop -Caption +ToolWindow")
+classGui.BackColor := "EEAA99"
+classGui.SetFont("s20")
+ogcTextFileInfo := classGui.Add("Text", "vFileInfo cred", versusRace)
+WinSetTransColor("EEAA99 150")
+classGui.Show("x5" . " y20")
+
+if WinExist("Brood War")
+WinActivate	
+
+
+}
 f1::
 { 
 global 
