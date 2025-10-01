@@ -1,4 +1,5 @@
 AHK2 Script that displays build order info as an overlay in the top left and reads game timer to move to next step. 
+
   F1: Display in top left, 
   F6: Remove text,
   F7: Start scanning timer,
